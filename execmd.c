@@ -38,7 +38,7 @@ int execmd(char **argv)
 			}
 			else
 			{
-				fprintf(stderr, "%s: command not found\n", command);
+				perror(command);
 				exit(1);
 			}
 		}

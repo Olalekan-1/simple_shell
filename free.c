@@ -87,16 +87,27 @@ int _atoi(char *str)
 	int sign = 1;
 	int i = 0;
 
-	if (str[0] == '-')
+	while (str[i] == ' ')
 	{
-		sign = -1;
 		i++;
 	}
-
-	for (; str[i] != '\0'; ++i)
+	if (str[i] == '-' || str[i] == '+')
 	{
-		res = res * 10 + str[i] - '0';
+		sign = 1 - 2 * (str[i++] == '-');
 	}
 
-	return (sign * res);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		if (res > MAX_INT / 10 || (res == MAX_INT / 10 && str[i] - '0' > 7))
+		{
+			if (sign == 1)
+				return (MAX_INT);
+			else
+				return (MIN_INT);
+		}
+		res = 10 * res + (str[i++] - '0');
+	}
+
+	return (res * sign);
 }
+

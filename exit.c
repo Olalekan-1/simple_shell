@@ -1,5 +1,4 @@
 #include "main.h"
-#include <ctype.h>
 /**
  * __exit - function exit shell
  * @cmd: The command - exit
@@ -14,7 +13,7 @@ int __exit(char **cmd, int status, char *filename)
 {
 	if (cmd[1] != NULL)
 	{
-		status = atoi(cmd[1]);
+		status = _atoi(cmd[1]);
 		if (status != 0 || strcmp(cmd[1], "0") == 0)
 		{
 			free_memory_pp(cmd);

@@ -11,6 +11,9 @@
 
 
 #define PROMPT "$ "
+#define MAX_INT (2147483647)
+#define MIN_INT (-2147483648)
+
 
 
 extern char **environ;
