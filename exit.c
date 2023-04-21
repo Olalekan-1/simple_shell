@@ -14,7 +14,7 @@ int __exit(char **cmd, int status, char *filename)
 	if (cmd[1] != NULL)
 	{
 		status = _atoi(cmd[1]);
-		if (status != 0 || strcmp(cmd[1], "0") == 0)
+		if (status != 0 || _strcmp(cmd[1], "0") == 0)
 		{
 			free_memory_pp(cmd);
 			exit(status);

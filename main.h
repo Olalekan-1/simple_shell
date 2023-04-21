@@ -8,9 +8,11 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <fcntl.h>
 
 
-#define PROMPT "$ "
+#define BUFFER_SIZE 1024
+/*#define PROMPT "$ "*/
 #define MAX_INT (2147483647)
 #define MIN_INT (-2147483648)
 
@@ -19,7 +21,7 @@
 extern char **environ;
 
 int (*check_builtins(char **cmd))(char **, int, char *);
-
+ssize_t _getline(char **lineptr, size_t *n, int fd);
 
 void prompt(void);
 
