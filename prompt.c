@@ -10,6 +10,8 @@
 
 void prompt(void)
 {
-	printf("\r%s", PROMPT);
+	char *prompt = "$ ";
+
+	_putss(prompt);
 	fflush(stdout);
 }
