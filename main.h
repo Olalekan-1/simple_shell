@@ -39,9 +39,14 @@ unsigned int _strspn(char *s, const char *accept);
 size_t _strcspn(char *s, const char *reject);
 void _putss(char *str);
 int _atoi(char *str);
+int _strncmp(const char *s1, const char *s2, size_t n);
+char *_memcpy(char *dest, char *src, unsigned int n);
 
 
-int execmd(char **argv);
+
+/*int execmd(char **argv);*/
+int execmd(char **argv, char *filename);
+
 char *get_path(char *cmd);
 
 char **parser(char *lineptr);
@@ -69,4 +74,12 @@ int _cd(char **argv, int argc, char *filename);
 
 
 char *_getenv(const char *name);
+int _setenv(const char *name, const char *value, int overwrite);
+
+
+
+
+
+
+
 #endif
