@@ -20,11 +20,12 @@ int main(int argc __attribute__((unused)), char **argv)
 		prompt();
 		if (getline(&lineptr, &n, stdin) == -1)
 		{
-			_putchar(10);
+			/*_putchar(10);*/
 			break;
 		}
 		if ((*lineptr == '\n') || (*lineptr == '\0'))
 			continue;
+		lineptr[strcspn(lineptr, "\n")] = '\0';
 		line = parser(lineptr);
 		if (!line || !line[0])
 			continue;
