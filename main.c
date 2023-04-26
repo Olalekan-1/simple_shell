@@ -1,20 +1,4 @@
 #include "main.h"
-#include <signal.h>
-
-void sigint_handler(void);
-
-/**
- * sigint_handler - to handle ctr+c signal
- * @void: void
- * Return: ...
- */
-
-void sigint_handler(void)
-{
-	_putchar(10);
-	prompt();
-}
-
 
 /**
  * main - main to print shell
@@ -32,7 +16,6 @@ int main(int argc __attribute__((unused)), char **argv)
 
 	while (1)
 	{
-		signal(SIGINT, sigint_handler);
 		if (isatty(STDIN_FILENO))
 		prompt();
 		if (getline(&lineptr, &n, stdin) == -1)
