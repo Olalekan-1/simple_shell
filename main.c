@@ -1,4 +1,19 @@
 #include "main.h"
+#include <signal.h>
+
+void sigint_handler(void);
+
+/**
+ * sigint_handler - to handle ctr+c signal
+ * @void: void
+ * Return: ...
+ */
+
+void sigint_handler(void)
+{
+	_putchar(10);
+	prompt();
+}
 
 
 /**
@@ -7,7 +22,6 @@
  * @argv: argument vector
  * Return: 0 for success
  */
-
 
 int main(int argc __attribute__((unused)), char **argv)
 {	int (*builtin)(char **, int, char *);
@@ -18,6 +32,7 @@ int main(int argc __attribute__((unused)), char **argv)
 
 	while (1)
 	{
+		signal(SIGINT, sigint_handler);
 		if (isatty(STDIN_FILENO))
 		prompt();
 		if (getline(&lineptr, &n, stdin) == -1)
