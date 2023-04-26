@@ -24,11 +24,10 @@ int main(int argc __attribute__((unused)), char **argv)
 		bytes_read = getline(&lineptr, &n, stdin);
 		if (bytes_read == -1 || bytes_read == EOF)
 			break;
-		if (lineptr[bytes_read - 1] == '\n')
-			lineptr[bytes_read - 1] = '\0';
 		line = parser(lineptr);
 		if (line == NULL)
 			continue;
+		lineptr[bytes_read - 1] = '\0';
 		builtin = check_builtins(line);
 		if (builtin)
 		{
