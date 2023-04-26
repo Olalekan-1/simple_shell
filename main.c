@@ -9,25 +9,33 @@
  */
 
 
-int main(int argc __attribute__((unused)), char **argv)
-{	int (*builtin)(char **, int, char *);
-	size_t n = 0;
+int main(int argc __attribute__((unused)), char *argv[])
+{
+	int (*builtin)(char **, int, char *);
+	char **line;
 	char *lineptr = NULL;
-	char **line = argv;
+	size_t n = 0;
+	ssize_t bytes_read;
 	int status = 0;
-	int bytes_read;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			prompt();
 		bytes_read = getline(&lineptr, &n, stdin);
-		if (bytes_read == -1 || bytes_read == EOF)
+		if (bytes_read == -1)
+		{
+			_putchar(10);
 			break;
-		line = parser(lineptr);
-		if (line == NULL)
+		}
+		if (*lineptr == '\n' || *lineptr == '\0')
 			continue;
-		lineptr[bytes_read - 1] = '\0';
+		line = parser(lineptr);
+		if (!line || !line[0])
+		{
+			free(line);
+			continue;
+		}
 		builtin = check_builtins(line);
 		if (builtin)
 		{
@@ -35,11 +43,12 @@ int main(int argc __attribute__((unused)), char **argv)
 			free_memory_pp(line);
 			continue;
 		}
-		execmd(line);
+		else
+			status = execmd(line);
 		free_memory_pp(line);
 	}
 	if (lineptr != NULL)
 		free(lineptr);
-	_putchar(10);
 	return (0);
 }
+
