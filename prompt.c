@@ -10,7 +10,7 @@
 
 void prompt(void)
 {
-	char *prompt = "$ ";
+	char prompt[3] = {'$', ' ', '\0'};
 
 	_putss(prompt);
 	fflush(stdout);
