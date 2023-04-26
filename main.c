@@ -37,7 +37,6 @@ int main(int argc __attribute__((unused)), char **argv)
 			free_memory_pp(line);
 			continue;
 		}
-		else
 		execmd(line, argv[0]);
 		free_memory_pp(line);
 	}
