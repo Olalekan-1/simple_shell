@@ -11,39 +11,40 @@
 
 int execmd(char **argv, char *filename)
 {
-	char *command = argv[0]; /**cmd = get_path(command);*/
+	char *command = NULL, *cmd = NULL;
 	pid_t pid;
 	int status;
-	/*char *cmd = get_path(argv[0]);*/
-
-	/*if (cmd == NULL)*/
-	/*{*/
-		/*perror(cmd);*/
-		/*return (1);*/
-	/*}*/
 
 	pid = fork();
-	if (pid < 0)
+	if (pid == -1)
 	{
-		perror("Error");
-		exit(1);
+		perror("Error:");
+		return (1);
 	}
-
-	else if (pid == 0)
+	if (pid == 0)
 	{
-		execve(command, argv, NULL);
-		perror(filename);
-		exit(1);
+		if (argv)
+		{
+			command = argv[0];
+			cmd = get_path(command);
+			if (cmd != NULL)
+			{
+				if (execve(cmd, argv, environ) == -1)
+				{
+					perror("Error");
+				}
+			}
+			else
+			{
+				perror(filename);
+				exit(1);
+			}
+		}
 	}
 	else
 	{
-		if (waitpid(pid, &status, 0) == -1)
-		{
-			perror("waitpid");
-			exit(1);
-		}
+		wait(&status);
 	}
 	return (0);
 }
-
 

@@ -20,15 +20,17 @@ void prompt(void)
 	if (!user || !host)
 	{
 		_putss(prompt_str);
+		fflush(stdout);
 		return;
 	}
 
-	prompt_len = strlen(user) + strlen(host) + 6;
-	prompt = malloc(prompt_len);
+	prompt_len = _strlen(user) + _strlen(host) + _strlen(prompt_str) + 6;
+	prompt = malloc(prompt_len + 1);
+
 	if (!prompt)
 	{
-		_putss(prompt_str);
-		return;
+		_putss("Error: failed to allocate memory\n");
+		exit(1);
 	}
 	_strcpy(prompt, user);
 	_strcat(prompt, "@");
@@ -36,6 +38,7 @@ void prompt(void)
 	_strcat(prompt, " ");
 	_strcat(prompt, prompt_str);
 	_putss(prompt);
+	fflush(stdout);
 
 	free(prompt);
 }
