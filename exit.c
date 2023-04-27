@@ -15,20 +15,16 @@ int __exit(char **cmd, int status, char *filename)
 		free_memory_pp(cmd);
 		exit(status);
 	}
-	while (cmd[1])
+	if (!is_numeric(cmd[1]))
 	{
-		if (!is_numeric(cmd[1]))
-		{
-			_putss(filename);
-			_putss(": ");
-			_putss(cmd[0]);
-			_putss(": ");
-			_putss("Illegal number: ");
-			_putss(cmd[1]);
-			_putchar('\n');
-			/*continue;*/
-			return (1);
-		}
+		_putss(filename);
+		_putss(": ");
+		_putss(cmd[0]);
+		_putss(": ");
+		_putss("Illegal number: ");
+		_putss(cmd[1]);
+		_putchar('\n');
+		return (1);
 	}
 
 	status = _atoi(cmd[1]);
