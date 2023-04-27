@@ -18,7 +18,7 @@ int (*check_builtins(char **name))(char **, int, char *)
 		};
 	i = 0;
 	/*len = strlen(*name);*/
-	while (builtin[i].name)
+	while (builtin[i].name != NULL)
 	{
 		if (_strcmp(builtin[i].name, name[0]) == 0)
 
