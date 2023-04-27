@@ -8,19 +8,16 @@
  */
 
 
-
 int __exit(char **cmd, int status, char *filename)
 {
-	if (cmd[1] != NULL)
+	if (!cmd[1])
 	{
-		status = _atoi(cmd[1]);
-		if (status != 0 || _strcmp(cmd[1], "0") == 0)
-		{
-			/*free(cmd[1]);*/
-			/*free(cmd);*/
-			exit(status);
-		}
-		else
+		free_memory_pp(cmd);
+		exit(status);
+	}
+	while (cmd[1])
+	{
+		if (!is_numeric(cmd[1]))
 		{
 			_putss(filename);
 			_putss(": ");
@@ -29,13 +26,12 @@ int __exit(char **cmd, int status, char *filename)
 			_putss("Illegal number: ");
 			_putss(cmd[1]);
 			_putchar('\n');
+			/*continue;*/
+			return (1);
 		}
 	}
-	else
-	{
-		status = 0;
-		exit(status);
-	}
+
+	status = _atoi(cmd[1]);
 	free_memory_pp(cmd);
 	exit(status);
 }
