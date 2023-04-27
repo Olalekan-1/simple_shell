@@ -18,7 +18,7 @@ int __exit(char **cmd, int status, char *filename)
 		{
 			/*free(cmd[1]);*/
 			/*free(cmd);*/
-			_exit(status);
+			exit(status);
 		}
 		else
 		{
@@ -29,14 +29,13 @@ int __exit(char **cmd, int status, char *filename)
 			_putss("Illegal number: ");
 			_putss(cmd[1]);
 			_putchar('\n');
-			status = 1;
 		}
 	}
 	else
 	{
 		status = 0;
-		_exit(status);
+		exit(status);
 	}
 	free_memory_pp(cmd);
-	_exit(status);
+	exit(status);
 }
