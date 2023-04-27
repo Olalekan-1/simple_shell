@@ -25,7 +25,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		}
 		if ((*lineptr == '\n') || (*lineptr == '\0'))
 			continue;
-		lineptr[strcspn(lineptr, "\n")] = '\0';
+		lineptr[_strcspn(lineptr, "\n")] = '\0';
 		line = parser(lineptr);
 		if (!line || !line[0])
 			continue;
