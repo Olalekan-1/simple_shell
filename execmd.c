@@ -44,6 +44,8 @@ int execmd(char **argv, char *filename)
 	else
 	{
 		wait(&status);
+		waitpid(pid, &status, 0);
+		WEXITSTATUS(status);
 	}
 	return (0);
 }
