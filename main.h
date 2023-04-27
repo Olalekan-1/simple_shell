@@ -41,6 +41,7 @@ void _putss(char *str);
 int _atoi(char *str);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_memcpy(char *dest, char *src, unsigned int n);
+int is_numeric(const char *str);
 
 
 
