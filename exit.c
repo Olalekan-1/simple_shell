@@ -9,7 +9,7 @@
 
 
 int __exit(char **cmd, int status, char *filename)
-{	int exit_status;
+{	/*int exit_status;*/
 
 	if (!cmd || !cmd[0])
 	{
@@ -26,11 +26,11 @@ int __exit(char **cmd, int status, char *filename)
 		_putss(cmd[0]);
 		_putss(": ");
 		_putss("requires an argument\n");
-		return (1);
+		return (2);
 	}
 
-	exit_status = _atoi(cmd[1]);
-	if ((!is_numeric(cmd[1])) || exit_status < 0)
+	status = _atoi(cmd[1]);
+	if ((!is_numeric(cmd[1])) || status < 0)
 	{
 		_putss(filename);
 		_putss(": ");
@@ -39,10 +39,9 @@ int __exit(char **cmd, int status, char *filename)
 		_putss("Illegal number: ");
 		_putss(cmd[1]);
 		_putchar('\n');
-		return (1);
+		return (2);
 	}
 	/*status = atoi(cmd[1]);*/
 	free_memory_pp(cmd);
-	exit(exit_status);
+	exit(status);
 }
-
