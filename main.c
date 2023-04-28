@@ -36,13 +36,13 @@ int main(int argc __attribute__((unused)), char **argv)
 			free_memory_pp(line);
 			continue;
 		}
-		execmd(line, argv[0]);
+		status = execmd(line, argv[0]);
 		free_memory_pp(line);
 	}
 	if (lineptr != NULL)
 	{
 		free(lineptr);
 	}
-	return (0);
+	return (status);
 }
 
